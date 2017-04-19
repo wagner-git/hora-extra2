@@ -83,7 +83,7 @@
 </div>
 
 <script type="text/javascript">
-    function calcular(id) {
+    function calcular() {
         var uSal = document.getElementById('salBruto').value;
         if(!uSal){
             alert('Favor informar o SALÁRIO!');
@@ -97,7 +97,7 @@
 
         var uMonth = document.getElementById("mes").value;
         if(!uMonth){
-            uMonth = new Date().getMonth();
+            uMonth = (new Date().getMonth()) +1; //Add 1 pois o getMonth retorna de 0 a 11.
         };     
 
         var uCH = document.getElementById('carga_horaria').value;

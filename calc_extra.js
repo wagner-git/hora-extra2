@@ -115,25 +115,23 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba, uDias_desca, 
 
     /** FUNCTIONS **/
 
-    alert("Relatório das horas de: " + uYear + "-" + uMonth
+    alert("RELATÓRIO PARA O MÊS DE:     " + uYear + "-" + uMonth + "\n\n"
         + "** NORMAL **\n"
         + "Extra R$: " + parseFloat(val).toFixed(2) 
         + "\n"
         + "DSR   R$: " + parseFloat(val_DSR).toFixed(2)
-        + "\n"
-        + "\n"
+        + "\n\n"
         + "** NOTURNA **\n"
         + "Extra R$: " + parseFloat(val_n).toFixed(2) 
         + "\n"
         + "DSR   R$: " + parseFloat(val_DSR_N).toFixed(2)
-        + "\n"
-        + "\n"
+        + "\n\n"
         + "** FIM DE SEMANA/FERIADOS **\n"
         + "Extra R$: " + parseFloat(val_df).toFixed(2) 
         + "\n"
         + "DSR   R$: " + parseFloat(val_DSR_DF).toFixed(2)
-        + "\n"
-        + "\n"
+        + "\n\n"
         + "Total R$: " + parseFloat(valfinal+valfinal_n+varfinal_df).toFixed(2) );
+        + "\n\n"
          return parseFloat(valfinal+valfinal_n+varfinal_df).toFixed(2);
 }
