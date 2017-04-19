@@ -113,6 +113,51 @@
     </main>
 
   </div>
-
 </body>
+
+<script type="text/javascript">
+    function calcular() {
+        var uSal = document.getElementById('salBruto').value;
+        if(!uSal){
+            alert('Favor informar o SALÁRIO!');
+            document.getElementById("salBruto").focus();
+            return;};        
+
+        var uYear = document.getElementById("ano").value;
+        if(!uYear){
+            uYear = new Date().getFullYear();
+        };     
+
+        var uMonth = document.getElementById("mes").value;
+        if(!uMonth){
+            uMonth = (new Date().getMonth()) +1; //Add 1 pois o getMonth retorna de 0 a 11.
+        };     
+
+        var uCH = document.getElementById('carga_horaria').value;
+        var uCarga_hora = (!uCH)?220:uCH;
+    
+        uDias_traba = document.getElementById("dias_trabalho").value;//21
+
+        uDias_desca = document.getElementById("dias_descanso").value;//10
+
+        uQtd_hrs = document.getElementById("horas_nomais").value;
+        if(!uQtd_hrs){
+            alert('Favor informar os QTD HRS NORMAIS!');
+            document.getElementById("horas_nomais").focus();
+            return;};
+
+        uQtd_hrs_n = document.getElementById("hrs_noturna").value; 
+
+
+        calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba, uDias_desca, uQtd_hrs, uQtd_hrs_n);
+
+    }
+</script>
+
+<script type="text/javascript">
+    document.getElementById('ano').placeholder= (new Date().getFullYear());
+    document.getElementById('mes').placeholder= (new Date().getMonth()) + 1; //Retorna mes de 0 - 11 e soma 1
+</script>
+
+
 </html>
