@@ -1,4 +1,6 @@
-function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba, uDias_desca, uQtd_hrs, uQtd_hrs_n){
+function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba
+                    , uDias_desca, uQtd_hrs, uQtd_hrs_n
+                    , uDencaso_sat){
     
     console.log("App hora-extra inicializado");
 
@@ -26,12 +28,14 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba, uDias_desca, 
         console.log("As datas informadas estão OK");
     }
     
-    dencaso_sat = true; //PARA BANCARIOS É TRUE
+    //dencaso_sat = uDencaso_sat; //PARA BANCARIOS É TRUE
+
+    console.log('DESCANSO SÁBADO: ' + ( (uDencaso_sat)?'true':'false' ));
 
     var diasTrabalho = moment().weekdayCalc({  
         rangeStart: startDate,
         rangeEnd: endDate,  
-        weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', (!dencaso_sat)?'SAT' : '' ], 
+        weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', (!uDencaso_sat)?'SAT' : '' ], 
         exclusions: [jan_1, mai_1, mai_26, jan_25, abr_21],
         //inclusions: []
     })
@@ -52,29 +56,24 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba, uDias_desca, 
     //var sal = 5923.5; 
     var sal = uSal;
     var carga_horaria = uCarga_hora;
-    var qtd_hrs = uQtd_hrs//17.92; //horas extra no mes (das 5:01 as 22:00)
-    var qtd_hrs_n = uQtd_hrs_n//0; //horas extra noturnas no mes (das 22:01 as 05:00)
+    var qtd_hrs = uQtd_hrs //17.92; //horas extra no mes (das 5:01 as 22:00)
+    var qtd_hrs_n = uQtd_hrs_n //0; //horas extra noturnas no mes (das 22:01 as 05:00)
     var qtd_hrs_df = 0; //horas extra domingo feriado  (das 22:01 as 05:00)
 
-    var add_noturn = 1.2; //20%
+    
 
-    /*
-    ** Porcentagem de remuneração sob as hrs extras ** 
-    DSR_normal      = 50%
-    DSR_dom_feria   = 75%
-    add_noturno     = 35%
-    */
-
-    var DSR_normal = 1.5; //adicoinal normal 50%
-    var DSR_noturn = 1.35 ; //35%
+    //JP MORGAN    
+    
+    var DSR_normal = 1.5; //adicoinal normal 50%        
     var DSR_dom_feria = 2 ; //100%
+    var add_noturn = 1.35; //20%
+    //var DSR_noturn = 1.35 ; //35%
+       
 
-    //console.log('Adc normal 50%: ' + (DSR_normal));
-    //console.log('Adc noturno +38%: ' + (DSR_dom_feria));
 
     var val = ((sal/carga_horaria)*qtd_hrs)*DSR_normal;
 
-    var val_n = (((sal/carga_horaria)*qtd_hrs_n)*DSR_normal)*DSR_noturn;
+    var val_n = (((sal/carga_horaria)*qtd_hrs_n)*DSR_normal)*add_noturn;
 
     var val_df = ((sal/carga_horaria)*qtd_hrs_df)*DSR_dom_feria;
 

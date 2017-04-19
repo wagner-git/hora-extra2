@@ -1,129 +1,118 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Overtime</title>
-	<script src="moment.js"></script>
+  <title>Overtime</title>
+
+  <script src="moment.js"></script>
     <script src="moment-weekday-calc.js"></script>
-    <script src="calc_extra.js"></script>
-    <!--<script src="logger.js"></script>-->
+    <script src="calc_extra.js"></script>  
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+    <!--<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-orange.min.css" />-->
+    <!--<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
+    <link rel="stylesheet" href="icons.css">
+    <link rel="stylesheet" href="material.blue_grey-orange.min.css" />
+    <script defer src="material.min.js"></script>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<body>
 
-
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <!-- Title -->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+    <header class="mdl-layout__header">     
+      
+    <div class="mdl-layout__header-row">    
       <span class="mdl-layout-title">Overtime</span>
     </div>
-  </header>
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Title</span>
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-    </nav>
+
+      <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+        <a href="#fixed-tab-1" class="mdl-layout__tab is-active">CÁLCULAR</a>
+        <a href="#fixed-tab-2" class="mdl-layout__tab">CONFIGS</a>        
+      </div>
+    </header>
+
+
+    <main class="mdl-layout__content">
+      <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">        
+        <div class="page-content" style="text-align: center; margin-top: 10%; background-color: #00000;">  
+           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="salBruto" placeholder="0.00">
+              <label class="mdl-textfield__label" for="salBruto">Salário bruto</label>
+           </div>
+
+           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="carga_horaria" placeholder="220">
+              <label class="mdl-textfield__label" for="carga_horaria">Carga horária</label>
+           </div>
+
+           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="horas_nomais" placeholder="00:00">
+              <label class="mdl-textfield__label" for="hrs_normal">Horas Normais - (05:00 - 22:00)</label>
+           </div>
+
+           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="hrs_noturna" placeholder="00:00">
+              <label class="mdl-textfield__label" for="hrs_noturna">Horas Noturnas - (22:01 - 04:59)</label>
+           </div>  
+
+           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="ano" placeholder="">
+              <label class="mdl-textfield__label" for="ano">Ano</label>
+           </div>            
+
+           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="mes" placeholder="">
+              <label class="mdl-textfield__label" for="mes">Mês</label>
+           </div>            
+
+           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="descanso_sabado" placeholder="true">
+              <label class="mdl-textfield__label" for="descanso_sabado">Sábado é descando</label>
+           </div>    
+
+           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="dias_trabalho" placeholder="">
+              <label class="mdl-textfield__label" for="dias_trabalho">Dias trabalho</label>
+           </div>    
+
+           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="dias_descanso" placeholder="">
+              <label class="mdl-textfield__label" for="dias_descanso">Dias descanco</label>
+           </div>    
+  
+           <button style="display: block; margin: 0 auto;" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"  onclick="calcular();" style="margin-top: 3%;">CALCULAR</button>
+
+        </div>
+      </section>
+
+      <section class="mdl-layout__tab-panel" id="fixed-tab-2" style="margin-top: auto; margin-left: 10%;">
+      <div class="page-content" >  
+        <div class="page-content">
+          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" style="margin-top: 5%;" for="switch-1">
+            <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
+            <span class="mdl-switch__label">Sábado dia de descanso</span>
+          </label>
+
+          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" style="margin-top: 5%;" for="switch-2">
+            <input type="checkbox" id="switch-2" class="mdl-switch__input" checked>
+            <span class="mdl-switch__label">Cálculo  dias Trabalho/Descanso automático</span>
+          </label>
+
+        </div>
+
+        
+      </section>      
+
+      <script>
+        function check(){
+          var ele = document.getElementById('switch-1');//.MaterialSwitch.off();
+          alert
+        }
+      </script>
+      
+    </main>
+
   </div>
 
-  <main class="mdl-layout__content container" style="background-color: #EEE;">
-    <div class="page-content" style="text-align: center; margin-top: 12%; background-color: #00000;">
-
-         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="salBruto" placeholder="0.00">
-            <label class="mdl-textfield__label" for="salBruto">Salário bruto</label>
-         </div>
-
-         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="carga_horaria" placeholder="220">
-            <label class="mdl-textfield__label" for="carga_horaria">Carga horária</label>
-         </div>
-
-         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="horas_nomais" placeholder="00:00">
-            <label class="mdl-textfield__label" for="hrs_normal">Horas Normais - (05:00 - 22:00)</label>
-         </div>
-
-         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="hrs_noturna" placeholder="00:00">
-            <label class="mdl-textfield__label" for="hrs_noturna">Horas Noturnas - (22:01 - 04:59)</label>
-         </div>  
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="ano" placeholder="">
-            <label class="mdl-textfield__label" for="ano">Ano</label>
-        </div>            
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="mes" placeholder="">
-            <label class="mdl-textfield__label" for="mes">Mês</label>
-        </div>            
-   
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="dias_trabalho" placeholder="">
-            <label class="mdl-textfield__label" for="dias_trabalho">Dias trabalho</label>
-        </div>    
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="dias_descanso" placeholder="">
-            <label class="mdl-textfield__label" for="dias_descanso">Dias descanco</label>
-        </div>    
-  
-    </div>
-
-    <button style="display: block; margin: 0 auto;" class="mdl-button mdl-js-button mdl-button--raised" onclick="calcular();" style="margin-top: 3%;">CALCULAR</button>
-    
-  </main>
-
-</div>
-
-<script type="text/javascript">
-    function calcular() {
-        var uSal = document.getElementById('salBruto').value;
-        if(!uSal){
-            alert('Favor informar o SALÁRIO!');
-            document.getElementById("salBruto").focus();
-            return;};        
-
-        var uYear = document.getElementById("ano").value;
-        if(!uYear){
-            uYear = new Date().getFullYear();
-        };     
-
-        var uMonth = document.getElementById("mes").value;
-        if(!uMonth){
-            uMonth = (new Date().getMonth()) +1; //Add 1 pois o getMonth retorna de 0 a 11.
-        };     
-
-        var uCH = document.getElementById('carga_horaria').value;
-        var uCarga_hora = (!uCH)?220:uCH;
-    
-        uDias_traba = document.getElementById("dias_trabalho").value;//21
-
-        uDias_desca = document.getElementById("dias_descanso").value;//10
-
-        uQtd_hrs = document.getElementById("horas_nomais").value;
-        if(!uQtd_hrs){
-            alert('Favor informar os QTD HRS NORMAIS!');
-            document.getElementById("horas_nomais").focus();
-            return;};
-
-        uQtd_hrs_n = document.getElementById("hrs_noturna").value; 
-
-
-        calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba, uDias_desca, uQtd_hrs, uQtd_hrs_n);
-
-    }
-</script>
-
-<script type="text/javascript">
-    document.getElementById('ano').placeholder= (new Date().getFullYear());
-    document.getElementById('mes').placeholder= (new Date().getMonth()) + 1; //Retorna mes de 0 - 11 e soma 1
-</script>
-
+</body>
 </html>
