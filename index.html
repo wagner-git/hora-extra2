@@ -18,7 +18,8 @@
 </head>
 <body>
 
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+  <!--<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">-->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">     
       
     <div class="mdl-layout__header-row">    
@@ -34,9 +35,9 @@
 
     <main class="mdl-layout__content">
       <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">        
-        <div class="page-content" style="text-align: center; margin-top: 10%; background-color: #00000;">  
+        <div class="page-content" style="text-align: center; margin-top: 10%;  margin-bottom: 10%; background-color: #00000;">  
            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="salBruto" placeholder="0.00">
+              <input class="mdl-textfield__input" type="text" id="salBruto" placeholder="0.00" onkeypress='return SomenteNumero(event)'>
               <label class="mdl-textfield__label" for="salBruto">Salário bruto</label>
            </div>
 
@@ -46,28 +47,40 @@
            </div>
 
            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="horas_nomais" placeholder="00:00">
+              <input class="mdl-textfield__input" type="text" id="horas_nomais" placeholder="0.0">
               <label class="mdl-textfield__label" for="hrs_normal">Horas Normais - (05:00 - 22:00)</label>
            </div>
 
            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="hrs_noturna" placeholder="00:00">
+              <input class="mdl-textfield__input" type="text" id="hrs_noturna" placeholder="0.0">
               <label class="mdl-textfield__label" for="hrs_noturna">Horas Noturnas - (22:01 - 04:59)</label>
            </div>  
 
            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="ano" placeholder="">
+              <input class="mdl-textfield__input" type="text" id="hrs_fin_feria" placeholder="0.0">
+              <label class="mdl-textfield__label" for="hrs_fin_feria">Horas Fim de Semana e Feriados - (05:00 - 22:00)</label>
+           </div>  
+
+           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="hrs_fin_feria_n" placeholder="0.0">
+              <label class="mdl-textfield__label" for="hrs_fin_feria_n">Horas Fim de Semana e Feriados - Noturna - (22:01 - 04:59)</label>
+           </div>  
+
+           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="number" id="ano" placeholder="">
               <label class="mdl-textfield__label" for="ano">Ano</label>
+              <span class="mdl-textfield__error">Ano inválido!</span>    
            </div>            
 
            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="mes" placeholder="">
+              <input class="mdl-textfield__input" type="number" id="mes" placeholder="">
               <label class="mdl-textfield__label" for="mes">Mês</label>
+              <span class="mdl-textfield__error">Mês inválido!</span>    
            </div>            
 
            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" type="text" id="descanso_sabado" placeholder="true">
-              <label class="mdl-textfield__label" for="descanso_sabado">Sábado é descando</label>
+              <label class="mdl-textfield__label" for="descanso_sabado">Sábado é descanso</label>
            </div>    
 
            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -95,11 +108,33 @@
 
           <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" style="margin-top: 5%;" for="switch-2">
             <input type="checkbox" id="switch-2" class="mdl-switch__input" checked>
-            <span class="mdl-switch__label">Cálculo  dias Trabalho/Descanso automático</span>
+            <span class="mdl-switch__label">Cálculo  dias Trabalho/Descanso automático</span>            
           </label>
 
-        </div>
+          
+           <div style="margin-top: 5%;" >
 
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="dias_descanso" placeholder="50%">
+                <label class="mdl-textfield__label" for="dias_descanso">Extra Normal</label>
+             </div>    
+
+             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="dias_descanso" placeholder="100%">
+                <label class="mdl-textfield__label" for="dias_descanso">Fins de Semana e Feriado</label>
+             </div>    
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="dias_descanso" placeholder="35%">
+                <label class="mdl-textfield__label" for="dias_descanso">Adicional Noturno</label>
+             </div>    
+
+
+            </div>  
+
+        </div>
+       
+       </div> 
         
       </section>      
 
@@ -118,6 +153,7 @@
 <script type="text/javascript">
     function calcular() {
         var uSal = document.getElementById('salBruto').value;
+        alert(uSal);
         if(!uSal){
             alert('Favor informar o SALÁRIO!');
             document.getElementById("salBruto").focus();
@@ -159,5 +195,17 @@
     document.getElementById('mes').placeholder= (new Date().getMonth()) + 1; //Retorna mes de 0 - 11 e soma 1
 </script>
 
+
+<script language='JavaScript'>
+    function SomenteNumero(e){
+        var tecla=(window.event)?event.keyCode:e.which;
+    
+        if((tecla>=46 && tecla<58)) return true; //numbers and period
+        else{
+          if (tecla==8 || tecla==0) return true;
+      else  return false;
+        }
+    }
+</script>
 
 </html>
