@@ -12,10 +12,14 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba
 
     //feriados
     var jan_1   = moment("2016-01-01 0:00", "YYYY-MM-DD HH:mm"); //Ano Novo; 
+    var jan_25  = moment("2016-01-25 0:00", "YYYY-MM-DD HH:mm"); //Aniversário de SP
     var mai_1   = moment("2016-05-01 0:00", "YYYY-MM-DD HH:mm"); //Dia do trabalho
     var mai_26  = moment("2016-05-26 0:00", "YYYY-MM-DD HH:mm"); //Corpus Christi; 
-    var jan_25  = moment("2016-01-25 0:00", "YYYY-MM-DD HH:mm"); //Aniversário de SP
-    var abr_21  = moment("2016/04/21 0:00", "YYYY-MM-DD HH:mm"); //Tiradentes
+    
+    
+    var abr_14  = moment("2017/04/14 0:00", "YYYY-MM-DD HH:mm"); //Sexta-feira da Paixão 
+    var abr_16  = moment("2017/04/16 0:00", "YYYY-MM-DD HH:mm"); //Páscoa
+    var abr_21  = moment("2017/04/21 0:00", "YYYY-MM-DD HH:mm"); //Tiradentes
 
     //Verfica se as datas são válidas
     if (!startDate.isValid()){
@@ -36,7 +40,7 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba
         rangeStart: startDate,
         rangeEnd: endDate,  
         weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', (!uDencaso_sat)?'SAT' : '' ], 
-        exclusions: [jan_1, mai_1, mai_26, jan_25, abr_21],
+        exclusions: [jan_1, mai_1, mai_26, jan_25, abr_14, abr_16, abr_21],
         //inclusions: []
     })
 

@@ -7,11 +7,15 @@
     <script src="moment-weekday-calc.js"></script>
     <script src="calc_extra.js"></script>  
 
-    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
     <!--<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-orange.min.css" />-->
     <!--<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>-->
-    <link rel="stylesheet" href="icons.css">
-    <link rel="stylesheet" href="material.blue_grey-orange.min.css" />
+    <link rel="stylesheet" href="app.css">
+
+    <!--<link rel="stylesheet" href="icons.css">-->
+    <link rel="stylesheet" href="material.blue_grey-orange.min.css" />	 
     <script defer src="material.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,30 +25,26 @@
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
   
     <header class="mdl-layout__header">     
-      
-    <div class="mdl-layout__header-row">    
-      <span class="mdl-layout-title">Overtime</span>
-    </div>
-
+    
+      <div class="mdl-layout__header-row">    
+        <span class="mdl-layout-title">Overtime</span>
+      </div>
+    
       <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-        <a href="#fixed-tab-1" class="mdl-layout__tab is-active">CÁLCULAR</a>
-        <a href="#fixed-tab-2" class="mdl-layout__tab">CONFIGS</a>        
+        <a href="#fixed-tab-1" class="mdl-layout__tab is-active"><strong>CÁLCULAR</strong></a>
+        <a href="#fixed-tab-2" class="mdl-layout__tab"><strong>CONFIGS</strong></a>        
       </div>
     </header>
 
-
     <main class="mdl-layout__content">
       <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">        
-        <div class="page-content" style="text-align: center; margin-top: 10%;  margin-bottom: 10%; background-color: #00000;">  
-           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <div class="page-content app">  
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" type="text" id="salBruto" placeholder="0.00" onkeypress='return SomenteNumero(event)'>
               <label class="mdl-textfield__label" for="salBruto">Salário bruto</label>
            </div>
-
-           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="carga_horaria" placeholder="220">
-              <label class="mdl-textfield__label" for="carga_horaria">Carga horária</label>
-           </div>
+     
 
            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" type="text" id="horas_nomais" placeholder="0.0">
@@ -73,27 +73,22 @@
            </div>            
 
            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="number" id="mes" placeholder="">
+              <input class="mdl-textfield__input" type="number" id="mes" placeholder="" onkeypress='return SomenteMes(event)'>
               <label class="mdl-textfield__label" for="mes">Mês</label>
               <span class="mdl-textfield__error">Mês inválido!</span>    
            </div>            
 
            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="descanso_sabado" placeholder="true">
-              <label class="mdl-textfield__label" for="descanso_sabado">Sábado é descanso</label>
-           </div>    
-
-           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="dias_trabalho" placeholder="">
+              <input class="mdl-textfield__input" type="text" id="dias_trabalho" placeholder="0" onkeypress='return SomenteDias(event)'>
               <label class="mdl-textfield__label" for="dias_trabalho">Dias trabalho</label>
            </div>    
 
            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="dias_descanso" placeholder="">
+              <input class="mdl-textfield__input" type="text" id="dias_descanso" placeholder="0" onkeypress='return SomenteDias(event)'>
               <label class="mdl-textfield__label" for="dias_descanso">Dias descanco</label>
            </div>    
   
-           <button style="display: block; margin: 0 auto;" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"  onclick="calcular();" style="margin-top: 3%;">CALCULAR</button>
+           <button style="display: block; margin: auto;" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"  onclick="calcular();" >CALCULAR</button>           
 
         </div>
       </section>
@@ -113,6 +108,11 @@
 
           
            <div style="margin-top: 5%;" >
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="carga_horaria" placeholder="220">
+              <label class="mdl-textfield__label" for="carga_horaria">Carga horária</label>
+            </div>
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" id="dias_descanso" placeholder="50%">
@@ -137,13 +137,6 @@
        </div> 
         
       </section>      
-
-      <script>
-        function check(){
-          var ele = document.getElementById('switch-1');//.MaterialSwitch.off();
-          alert
-        }
-      </script>
       
     </main>
 
@@ -152,8 +145,7 @@
 
 <script type="text/javascript">
     function calcular() {
-        var uSal = document.getElementById('salBruto').value;
-        alert(uSal);
+        var uSal = document.getElementById('salBruto').value;        
         if(!uSal){
             alert('Favor informar o SALÁRIO!');
             document.getElementById("salBruto").focus();
@@ -176,14 +168,15 @@
 
         uDias_desca = document.getElementById("dias_descanso").value;//10
 
-        uQtd_hrs = document.getElementById("horas_nomais").value;
+        uQtd_hrs = document.getElementById("horas_nomais").value.replace(",",".");
         if(!uQtd_hrs){
             alert('Favor informar os QTD HRS NORMAIS!');
             document.getElementById("horas_nomais").focus();
             return;};
 
-        uQtd_hrs_n = document.getElementById("hrs_noturna").value; 
+        uQtd_hrs_n = document.getElementById("hrs_noturna").value.replace(",",".");
 
+        uDencaso_sat = true; //Pegar da tela de configs
 
         calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba, uDias_desca, uQtd_hrs, uQtd_hrs_n);
 
@@ -200,12 +193,34 @@
     function SomenteNumero(e){
         var tecla=(window.event)?event.keyCode:e.which;
     
-        if((tecla>=46 && tecla<58)) return true; //numbers and period
+        if((tecla>=46 && tecla<=57)) return true; //numbers and period = 46
         else{
           if (tecla==8 || tecla==0) return true;
       else  return false;
         }
     }
+
+    function SomenteMes(e){
+        var tecla=(window.event)?event.keyCode:e.which;
+    
+        if((tecla>=49 && tecla<=57)) return true;
+        else{
+          if (tecla==8 || tecla==0) return true;
+        else  return false;
+        }
+    }
+
+        function SomenteDias(e){
+        var tecla=(window.event)?event.keyCode:e.which;
+    
+        if((tecla>=48 && tecla<=57)) return true;
+        else{
+          if (tecla==8 || tecla==0) return true;
+        else  return false;
+        }
+    }
+
+
 </script>
 
 </html>
