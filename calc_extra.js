@@ -171,8 +171,6 @@ function calcHoraMinuto(horaMinuto){
 
    var num  = hora + "."  + roundVal
 
-   alert("HORA/MINUTO: " + num);
-
    return parseFloat(num);
 
 
