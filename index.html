@@ -66,16 +66,27 @@
               <label class="mdl-textfield__label" for="hrs_fin_feria_n">Horas Fim de Semana e Feriados - Noturna - (22:01 - 04:59)</label>
            </div>  
 
+           
+           <!--
            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="number" id="ano" placeholder="">
+              <input class="mdl-textfield__input" type="number" id="ano" placeholder="" onkeypress='return SomenteAno(event)'>
               <label class="mdl-textfield__label" for="ano">Ano</label>
               <span class="mdl-textfield__error">Ano inválido!</span>    
            </div>            
 
+           
+           <!--
            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" type="number" id="mes" placeholder="" onkeypress='return SomenteMes(event)'>
               <label class="mdl-textfield__label" for="mes">Mês</label>
               <span class="mdl-textfield__error">Mês inválido!</span>    
+           </div>            
+           -->
+
+           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="ano_mes" placeholder="">
+              <label class="mdl-textfield__label" for="ano_mes">Ano/Mês</label>
+              <span class="mdl-textfield__error">Ano/Mès inválido!</span>    
            </div>            
 
            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -109,26 +120,25 @@
           
            <div style="margin-top: 5%;" >
 
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="carga_horaria" placeholder="220">
-              <label class="mdl-textfield__label" for="carga_horaria">Carga horária</label>
-            </div>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" id="carga_horaria" placeholder="220">
+                <label class="mdl-textfield__label" for="carga_horaria">Carga horária</label>
+              </div>
 
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="dias_descanso" placeholder="50%">
-                <label class="mdl-textfield__label" for="dias_descanso">Extra Normal</label>
-             </div>    
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="dias_descanso" placeholder="50%">
+                  <label class="mdl-textfield__label" for="dias_descanso">Extra Normal</label>
+               </div>    
 
-             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="dias_descanso" placeholder="100%">
-                <label class="mdl-textfield__label" for="dias_descanso">Fins de Semana e Feriado</label>
-             </div>    
+               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="dias_descanso" placeholder="100%">
+                  <label class="mdl-textfield__label" for="dias_descanso">Fins de Semana e Feriado</label>
+               </div>    
 
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" id="dias_descanso" placeholder="35%">
-                <label class="mdl-textfield__label" for="dias_descanso">Adicional Noturno</label>
-             </div>    
-
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="dias_descanso" placeholder="35%">
+                  <label class="mdl-textfield__label" for="dias_descanso">Adicional Noturno</label>
+               </div>                   
 
             </div>  
 
@@ -150,7 +160,7 @@
             alert('Favor informar o SALÁRIO!');
             document.getElementById("salBruto").focus();
             return;};        
-
+        /*
         var uYear = document.getElementById("ano").value;
         if(!uYear){
             uYear = new Date().getFullYear();
@@ -160,6 +170,21 @@
         if(!uMonth){
             uMonth = (new Date().getMonth()) +1; //Add 1 pois o getMonth retorna de 0 a 11.
         };     
+        */
+
+        var ano_mes = document.getElementById("ano_mes").value;
+        if(!ano_mes){
+            uYear = new Date().getFullYear();
+            uMonth = (new Date().getMonth()) +1; //Add 1 pois o getMonth retorna de 0 a 11.
+        }else{
+          
+          var res = ano_mes.split("-",2);
+          
+          uYear = res[0];
+          uMonth = res[1];
+          
+        };
+                
 
         var uCH = document.getElementById('carga_horaria').value;
         var uCarga_hora = (!uCH)?220:uCH;
@@ -178,18 +203,25 @@
 
         uDencaso_sat = true; //Pegar da tela de configs
 
-        calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba, uDias_desca, uQtd_hrs, uQtd_hrs_n);
+        calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba, uDias_desca, uQtd_hrs, uQtd_hrs_n, uDencaso_sat);
 
     }
 </script>
 
+
+
+    
 <script type="text/javascript">
-    document.getElementById('ano').placeholder= (new Date().getFullYear());
-    document.getElementById('mes').placeholder= (new Date().getMonth()) + 1; //Retorna mes de 0 - 11 e soma 1
-</script>
+    function atualizaCampos(){
+      var ano = new Date().getFullYear();
+      var mes = new Date().getMonth() + 1; //Retorna mes de 0 - 11 e soma 1  
 
+      document.getElementById('ano_mes').placeholder= (ano + "-" + mes);      
+      //document.getElementById('mes').placeholder= (new Date().getMonth()) + 1; 
+    }
 
-<script language='JavaScript'>
+    atualizaCampos();
+
     function SomenteNumero(e){
         var tecla=(window.event)?event.keyCode:e.which;
     
@@ -209,6 +241,17 @@
         else  return false;
         }
     }
+
+    function SomenteAno(e){
+        var tecla=(window.event)?event.keyCode:e.which;
+    
+        if((tecla>=48 && tecla<=57)) return true; //permite zero
+        else{
+          if (tecla==8 || tecla==0) return true;
+        else  return false;
+        }
+    }
+
 
         function SomenteDias(e){
         var tecla=(window.event)?event.keyCode:e.which;

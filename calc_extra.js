@@ -58,10 +58,11 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba
     console.log('DIAS TRABALHO/DESCANSO: ' + diasTrabalho + "/" + diasDescanso );
 
     //var sal = 5923.5; 
+
     var sal = uSal;
     var carga_horaria = uCarga_hora;
-    var qtd_hrs = uQtd_hrs //17.92; //horas extra no mes (das 5:01 as 22:00)
-    var qtd_hrs_n = uQtd_hrs_n //0; //horas extra noturnas no mes (das 22:01 as 05:00)
+    var qtd_hrs = calcHoraMinuto(uQtd_hrs); //17.92; //horas extra no mes (das 5:01 as 22:00)
+    var qtd_hrs_n = calcHoraMinuto(uQtd_hrs_n); //0; //horas extra noturnas no mes (das 22:01 as 05:00)
     var qtd_hrs_df = 0; //horas extra domingo feriado  (das 22:01 as 05:00)
 
     
@@ -77,6 +78,8 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba
 
     var val = ((sal/carga_horaria)*qtd_hrs)*DSR_normal;
 
+    console.log("val:" + val);
+
     var val_n = (((sal/carga_horaria)*qtd_hrs_n)*DSR_normal)*add_noturn;
 
     var val_df = ((sal/carga_horaria)*qtd_hrs_df)*DSR_dom_feria;
@@ -91,6 +94,8 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba
 // DSR = (valor total das horas extras do mês ) x domingos e feriados do mês  x  valor da hora extra com acréscimo número de dias úteis      
 
     var val_DSR = (val/diasTrabalho) * diasDescanso;
+
+    
 
     var val_DSR_N = (val_n/diasTrabalho) * diasDescanso;
 
@@ -113,11 +118,11 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba
     var valfinal_n = (val_n + val_DSR_N);
     var varfinal_df = (val_df + val_DSR_DF);
 
-
+    
+    
     console.log('R$ ' + parseFloat(valfinal+valfinal_n+varfinal_df).toFixed(2) );
 
     /** FUNCTIONS **/
-
     alert("RELATÓRIO PARA O MÊS DE:     " + uYear + "-" + uMonth + "\n\n"
         + "** NORMAL **\n"
         + "Extra R$: " + parseFloat(val).toFixed(2) 
@@ -138,3 +143,34 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba
         + "\n\n"
          return parseFloat(valfinal+valfinal_n+varfinal_df).toFixed(2);
 }
+
+
+function calcHoraMinuto(horaMinuto){
+/*Recebe uma variable com as horas 00:00
+    Separa e calcula os mintus
+    60 min = 100
+*/
+    var res = horaMinuto.split(".",2);
+
+    var hora = (res[0])?res[0]:0;
+    var min =  (res[1])?res[1]:0;
+
+
+    //console.log((res[1])?"true":"false");
+
+    console.log("HORA: " + hora);
+    console.log("MINUTO: " + min);
+
+    var val  = (min/60)*100;
+
+    var roundVal  = Math.ceil(val * 1); //Faz o round Ex.: 71.66 = 72    
+
+   console.log("HORA MINUTO:" + hora + ":" + roundVal);
+
+   console.log(hora + "."  + roundVal);
+
+   var num  = hora + "."  + roundVal
+
+   return parseFloat(num);
+
+};
