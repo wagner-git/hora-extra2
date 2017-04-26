@@ -7,6 +7,6 @@
 
 .flex{
 	display: flex;
-	flex-direction: COL
+	flex-direction: column;
 	flex: 1;
 }
