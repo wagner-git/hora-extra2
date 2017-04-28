@@ -36,70 +36,105 @@
       </div>
     </header>
 
-    <main class="mdl-layout__content">
-        <!--
-      <section class="mdl-layout__tab-panel " id="fixed-tab-1">        
-        <div class="page-content app">  -->
+    <main class="mdl-layout__content" style="margin-bottom:5%;">
+
       <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1" style="margin-top: 5%; margin-left: 10%; margin-right:10%">
         <div class="page-content" >  
 
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="salBruto" placeholder="0.00" onkeypress='return SomenteNumero(event)'>
+              <input class="mdl-textfield__input" type="text" id="salBruto" placeholder="R$ 0.00">
               <label class="mdl-textfield__label" for="salBruto">Salário bruto</label>
            </div>
               
                       
-           <div class="mdl-textfield mdl-textfield--floating-label" id="div_hora_normal">
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: left; padding-right: 10px;">
-                  <input class="mdl-textfield__input" type="text" id="horas_nomais" placeholder="0.0">
-                  <label class="mdl-textfield__label" for="hrs_normal">Normais - (05:00 - 22:00)</label>
-              </div>
+            <table >
+              <!--<tr> <th class="mdl-data-table__cell--non-numeric" id="th_uteis">Total de  horas - Dias úteis</th> </tr>-->
+              <tr> <th align="left">Total de  horas - Dias úteis</th> </tr>
+                  <span for="th_uteis" class="mdl-tooltip mdl-tooltip--small mdl-tooltip--bottom">
+                    <p>** Dias úteis ** </p>
+                    <p>Quantidade total de horas extras realizadas durante o mês nos dias uteis (Seg-Sexta)</p>
+                    <p>Normais - (05:00 - 22:00)</p>
+                    <p>Noturnas - (22:01 - 04:59)</p>
+                  </span>
 
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: right; padding-left: 10px">
-                  <input class="mdl-textfield__input" type="text" id="hrs_noturna" placeholder="0.0">
-                  <label class="mdl-textfield__label" for="hrs_noturna">Noturnas - (22:01 - 04:59)</label>
-              </div>  
-              <!--<label class="mdl-textfield__label" for="hrs_noturna">Horas Normais - Seg a Sexta</label>-->
-           </div>  
+                  <tr>
+                    <td>              
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: left; padding-right: 10px;">
+                        <input class="mdl-textfield__input" type="text" id="horas_nomais" placeholder="0.0">
+                        <label class="mdl-textfield__label" for="hrs_normal">Normais</label>
+                    </div>
 
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: right; padding-left: 10px">
+                        <input class="mdl-textfield__input" type="text" id="hrs_noturna" placeholder="0.0">
+                        <label class="mdl-textfield__label" for="hrs_noturna">Noturnas</label>
+                    </div>  
+                    </td>
+                  </tr>            
+                
+                 <tr> <th class="mdl-data-table__cell--non-numeric" id="th_fins_feria">Total de  horas - Fins de semana/feriados</th> </tr>
+                  <span for="th_fins_feria" class="mdl-tooltip mdl-tooltip--small mdl-tooltip--bottom">
+                    <p>** Fins de semana/feriados ** </p>
+                    <p>Caso você tenha trabalhado</p>
+                    <p>Quantidade total de horas extras realizadas durante o mês nos Fins de semana/feriados</p>
+                    <p>Normais - (05:00 - 22:00)</p>
+                    <p>Noturnas - (22:01 - 04:59)</p>
+                  </span>
+                                  
+                  <tr>
+                    <td>              
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: left; padding-right: 10px;">
+                          <input class="mdl-textfield__input" type="text" id="horas_nomais" placeholder="0.0">
+                          <label class="mdl-textfield__label" for="hrs_normal">Normais</label>
+                      </div>
 
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: right; padding-left: 10px">
+                          <input class="mdl-textfield__input" type="text" id="hrs_noturna" placeholder="0.0">
+                          <label class="mdl-textfield__label" for="hrs_noturna">Noturnas</label>
+                      </div>                  
+                    </td>
+                  </tr>     
 
+                  <tr>
+                    <td>
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: left; padding-right: 10px;">
+                        <input class="mdl-textfield__input" type="Month" id="ano_mes" placeholder="">
+                        <label class="mdl-textfield__label" for="ano_mes">Ano/Mês</label>
+                        <span class="mdl-textfield__error">Ano/Mès inválido!</span>    
+                      </div>            
+                    
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: left; padding-right: 10px;">
+                         <input class="mdl-textfield__input" type="number" id="feriados" placeholder="0">
+                         <label class="mdl-textfield__label" for="feriados">Quantidade de feriados</label>
+                         <span class="mdl-textfield__error">Número de feriados invválido</span>    
+                      </div>              
+                    <td/>
+                  </tr>   
 
-         <div class="mdl-textfield mdl-textfield--floating-label" id="div_hora_fim_feria">
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: left; padding-right: 10px;">
-                  <input class="mdl-textfield__input" type="text" id="hrs_fin_feria" placeholder="0.0">
-                  <label class="mdl-textfield__label" for="hrs_fin_feria">Normal - (05:00 - 22:00)</label>
-              </div>
+                  <tr>
+                    <td>                      
+                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: left; padding-right: 10px;">
+                        <input class="mdl-textfield__input" type="text" id="dias_trabalho" placeholder="0" onkeypress='return SomenteDias(event)'>
+                        <label class="mdl-textfield__label" for="dias_trabalho">Dias trabalho</label>
+                     </div>    
 
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: right; padding-left: 10px">
-                  <input class="mdl-textfield__input" type="text" id="hrs_fin_feria_n" placeholder="0.0">
-                  <label class="mdl-textfield__label" for="hrs_fin_feria_n">Noturna - (22:01 - 04:59)</label>
-              </div>  
-              <!--<label class="mdl-textfield__label" for="hrs_noturna">Horas Fim Feriado </label>-->
-          </div>  
+                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: right; padding-left: 10px">
+                        <input class="mdl-textfield__input" type="text" id="dias_descanso" placeholder="0" onkeypress='return SomenteDias(event)'>
+                        <label class="mdl-textfield__label" for="dias_descanso">Dias descanco</label>
+                     </div>    
+                    </td>
+                  </tr>
 
+                  <tr>
+                    <td>
+                      
+                        <button style="display: block; margin: auto;" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"  onclick="calcular();" >CALCULAR</button>           
 
+                    </td>
+                  </tr>
+            </table>
 
-
-
-           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="ano_mes" placeholder="">
-              <label class="mdl-textfield__label" for="ano_mes">Ano/Mês</label>
-              <span class="mdl-textfield__error">Ano/Mès inválido!</span>    
-           </div>            
-
-           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: left; padding-right: 10px;">
-              <input class="mdl-textfield__input" type="text" id="dias_trabalho" placeholder="0" onkeypress='return SomenteDias(event)'>
-              <label class="mdl-textfield__label" for="dias_trabalho">Dias trabalho</label>
-           </div>    
-
-           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: right; padding-left: 10px">
-              <input class="mdl-textfield__input" type="text" id="dias_descanso" placeholder="0" onkeypress='return SomenteDias(event)'>
-              <label class="mdl-textfield__label" for="dias_descanso">Dias descanco</label>
-           </div>    
   
-           <button style="display: block; margin: auto;" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"  onclick="calcular();" >CALCULAR</button>           
-
+  
         </div>
       </section>
 
@@ -142,50 +177,7 @@
             </div>  
 
 
-             <table >
-                  <tr> <th class="mdl-data-table__cell--non-numeric" id="th_uteis">Dias úteis</th> </tr>
-                  <span for="th_uteis" class="mdl-tooltip mdl-tooltip--large mdl-tooltip--top">
-                    <p>Quantidade total de horas extras realizadas durante o mês nos dias uteis (Seg-Sexta)</p>
-                    <p>Normais - (05:00 - 22:00)</p>
-                    <p>Noturnas - (22:01 - 04:59)</p>
-                  </span>
-
-                  <tr>
-                    <td>              
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: left; padding-right: 10px;">
-                        <input class="mdl-textfield__input" type="text" id="horas_nomais" placeholder="0.0">
-                        <label class="mdl-textfield__label" for="hrs_normal">Normais</label>
-                    </div>
-
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: right; padding-left: 10px">
-                        <input class="mdl-textfield__input" type="text" id="hrs_noturna" placeholder="0.0">
-                        <label class="mdl-textfield__label" for="hrs_noturna">Noturnas</label>
-                    </div>  
-                    </td>
-                  </tr>            
-                
-                 <tr> <th class="mdl-data-table__cell--non-numeric" id="th_fins_feria">Fins de semana/feriados?</th> </tr>
-                  <span for="th_fins_feria" class="mdl-tooltip mdl-tooltip--large mdl-tooltip--top">
-                    <p>Quantidade total de horas extras realizadas durante o mês nos Fins de semana/feriados</p>
-                    <p>Normais - (05:00 - 22:00)</p>
-                    <p>Noturnas - (22:01 - 04:59)</p>
-                  </span>
-                                  
-                  <tr>
-                    <td>              
-                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: left; padding-right: 10px;">
-                          <input class="mdl-textfield__input" type="text" id="horas_nomais" placeholder="0.0">
-                          <label class="mdl-textfield__label" for="hrs_normal">Normais - (05:00 - 22:00)</label>
-                      </div>
-
-                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: right; padding-left: 10px">
-                          <input class="mdl-textfield__input" type="text" id="hrs_noturna" placeholder="0.0">
-                          <label class="mdl-textfield__label" for="hrs_noturna">Noturnas - (22:01 - 04:59)</label>
-                      </div>                  
-                    </td>
-                  </tr>                            
-
-              </table>
+            
 
           </div>           
 
