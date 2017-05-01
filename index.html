@@ -218,16 +218,17 @@
         //uDias_desca = document.getElementById("dias_descanso").value;//10
 
         uQtd_hrs = document.getElementById("horas_nomais").value.replace(",",".");
-        if(!uQtd_hrs){
-            alert('Favor informar os QTD HRS NORMAIS!');
-            document.getElementById("horas_nomais").focus();
-            return;};
-
+  
         uQtd_hrs_n = document.getElementById("hrs_noturna").value.replace(",",".");
 
         uQtd_hrs_df = document.getElementById("horas_df").value.replace(",",".");
 
         uQtd_hrs_df_n = document.getElementById("hrs_df_n").value.replace(",",".");
+
+        if(!uQtd_hrs && !uQtd_hrs_n && !uQtd_hrs_df && !uQtd_hrs_df_n){
+            alert('Favor informar os QTD HRS!');
+            document.getElementById("horas_nomais").focus();
+            return;};
 
         uDencaso_sat = true; //Pegar da tela de configs
 

@@ -146,6 +146,11 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uQtd_hrs, uQtd_hrs_n,uQtd_
         + "\n"
         + "DSR   R$: " + parseFloat(val_DSR_DF).toFixed(2)
         + "\n\n"
+        + "** FIM DE SEMANA/FERIADOS - NOTURNA **\n"
+        + "Extra R$: " + parseFloat(val_df_n).toFixed(2) 
+        + "\n"
+        + "DSR   R$: " + parseFloat(val_DSR_DF_N).toFixed(2)
+        + "\n\n"
         + "Total R$: " + parseFloat(valfinal+valfinal_n+varfinal_df+varfinal_df_n).toFixed(2) );
         + "\n\n"
          return parseFloat(valfinal+valfinal_n+varfinal_df+varfinal_df_n).toFixed(2);
