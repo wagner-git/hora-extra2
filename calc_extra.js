@@ -1,7 +1,5 @@
-function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba
-                    , uDias_desca, uQtd_hrs, uQtd_hrs_n
-                    , uDencaso_sat){
-    
+function calc_extra(uSal, uYear, uMonth, uCarga_hora, uQtd_hrs, uQtd_hrs_n,uQtd_hrs_df, uQtd_hrs_df_n, uDencaso_sat, uFeridos){
+
     console.log("App hora-extra inicializado");
 
     //var year = "2016";
@@ -49,8 +47,8 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba
 
     //Usar dia de trabalho/descanso informados pelo usuário
 
-    diasTrabalho = (uDias_traba)?uDias_traba:diasTrabalho
-    diasDescanso = (uDias_desca)?uDias_desca:diasDescanso
+    //diasTrabalho = (uDias_traba)?uDias_traba:diasTrabalho
+    //diasDescanso = (uDias_desca)?uDias_desca:diasDescanso
 
 
     console.log('DIAS TRABALHO: ' + diasTrabalho);
@@ -63,7 +61,8 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba
     var carga_horaria = uCarga_hora;
     var qtd_hrs = calcHoraMinuto(uQtd_hrs); //17.92; //horas extra no mes (das 5:01 as 22:00)
     var qtd_hrs_n = calcHoraMinuto(uQtd_hrs_n); //0; //horas extra noturnas no mes (das 22:01 as 05:00)
-    var qtd_hrs_df = 0; //horas extra domingo feriado  (das 22:01 as 05:00)
+    var qtd_hrs_df = calcHoraMinuto(uQtd_hrs_df);; //horas extra domingo feriado  (das 22:01 as 05:00)
+    var qtd_hrs_df_n = calcHoraMinuto(uQtd_hrs_df_n);; //horas extra domingo feriado  (das 22:01 as 05:00)
 
     
 
@@ -78,11 +77,11 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba
 
     var val = ((sal/carga_horaria)*qtd_hrs)*DSR_normal;
 
-    console.log("val:" + val);
-
     var val_n = (((sal/carga_horaria)*qtd_hrs_n)*DSR_normal)*add_noturn;
 
     var val_df = ((sal/carga_horaria)*qtd_hrs_df)*DSR_dom_feria;
+
+    var val_df_n = (((sal/carga_horaria)*qtd_hrs_df_n)*DSR_dom_feria)*add_noturn;
 
     console.log('ANO e MES: ' +  uYear + "-" + uMonth );
 
@@ -90,6 +89,7 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba
     console.log('QTD HRS NORMAL: ' + qtd_hrs);
     console.log('QTD HRS NOTURNA: ' + qtd_hrs_n);
     console.log('QTD HRS DOM_FERIA: ' + qtd_hrs_df);
+    console.log('QTD HRS DOM_FERIA NOTURNO: ' + qtd_hrs_df_n);
 
 // DSR = (valor total das horas extras do mês ) x domingos e feriados do mês  x  valor da hora extra com acréscimo número de dias úteis      
 
@@ -100,6 +100,8 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba
     var val_DSR_N = (val_n/diasTrabalho) * diasDescanso;
 
     var val_DSR_DF = (val_df/diasTrabalho) * diasDescanso;
+
+    var val_DSR_DF_N = (val_df_n/diasTrabalho) * diasDescanso;
 
     console.log('')
     console.log("VALOR NORMAL: " + parseFloat(val).toFixed(2));
@@ -114,13 +116,18 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba
     console.log("DSR DOM-FERIA: "  + parseFloat( val_DSR_DF).toFixed(2));
     console.log('')
 
+    console.log("VALOR DOM_FERIA NOTURNO: " + parseFloat(val_df).toFixed(2));
+    console.log("DSR DOM-FERIA NOTURNO: "  + parseFloat( val_DSR_DF_N).toFixed(2));
+    console.log('')
+
     var valfinal = (val + val_DSR);
     var valfinal_n = (val_n + val_DSR_N);
     var varfinal_df = (val_df + val_DSR_DF);
+    var varfinal_df_n = (val_df + val_DSR_DF_N);
 
     
     
-    console.log('R$ ' + parseFloat(valfinal+valfinal_n+varfinal_df).toFixed(2) );
+    console.log('R$ ' + parseFloat(valfinal+valfinal_n+varfinal_df+varfinal_df_n).toFixed(2) );
 
     /** FUNCTIONS **/
     alert("RELATÓRIO PARA O MÊS DE:     " + uYear + "-" + uMonth + "\n\n"
@@ -139,9 +146,9 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uDias_traba
         + "\n"
         + "DSR   R$: " + parseFloat(val_DSR_DF).toFixed(2)
         + "\n\n"
-        + "Total R$: " + parseFloat(valfinal+valfinal_n+varfinal_df).toFixed(2) );
+        + "Total R$: " + parseFloat(valfinal+valfinal_n+varfinal_df+varfinal_df_n).toFixed(2) );
         + "\n\n"
-         return parseFloat(valfinal+valfinal_n+varfinal_df).toFixed(2);
+         return parseFloat(valfinal+valfinal_n+varfinal_df+varfinal_df_n).toFixed(2);
 }
 
 
