@@ -55,14 +55,14 @@ function calc_extra(uSal, uYear, uMonth, uCarga_hora, uQtd_hrs, uQtd_hrs_n,uQtd_
     console.log("DSR DOM-FERIA: "  + parseFloat( val_DSR_DF).toFixed(2));
     console.log('')
 
-    console.log("VALOR DOM_FERIA NOTURNO: " + parseFloat(val_df).toFixed(2));
+    console.log("VALOR DOM_FERIA NOTURNO: " + parseFloat(val_df_n).toFixed(2));
     console.log("DSR DOM-FERIA NOTURNO: "  + parseFloat( val_DSR_DF_N).toFixed(2));
     console.log('')
 
     var valfinal = (val + val_DSR);
     var valfinal_n = (val_n + val_DSR_N);
     var varfinal_df = (val_df + val_DSR_DF);
-    var varfinal_df_n = (val_df + val_DSR_DF_N);
+    var varfinal_df_n = (val_df_n + val_DSR_DF_N);
 
     
     
