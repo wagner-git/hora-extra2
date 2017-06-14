@@ -57,12 +57,12 @@
                   <tr>
                     <td>              
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: left; padding-right: 10px;">
-                        <input class="mdl-textfield__input" type="number" lang="en-150" id="horas_nomais" placeholder="0.0">
+                        <input class="mdl-textfield__input" type="number" id="horas_nomais" placeholder="0.0" maxlength="5" oninput="autotab(this, document.getElementById('hrs_noturna'))">
                         <label class="mdl-textfield__label" for="hrs_normal">Normais</label>
                     </div>
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: right; padding-left: 10px">
-                        <input class="mdl-textfield__input" type="number" id="hrs_noturna" placeholder="0.0">
+                        <input class="mdl-textfield__input" type="number" id="hrs_noturna" placeholder="0.0" maxlength="5" oninput="autotab(this, document.getElementById('calcular'))">
                         <label class="mdl-textfield__label" for="hrs_noturna">Noturnas</label>
                     </div>  
                     </td>
@@ -80,12 +80,12 @@
                   <tr>
                     <td>              
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: left; padding-right: 10px;">
-                          <input class="mdl-textfield__input" type="number" id="horas_df" placeholder="0.0">
+                          <input class="mdl-textfield__input" type="number" id="horas_df" placeholder="0.0" maxlength="5" oninput="autotab(this, document.getElementById('hrs_df_n'))">
                           <label class="mdl-textfield__label" for="horas_df">Normais</label>
                       </div>
 
                       <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 50%; float: right; padding-left: 10px">
-                          <input class="mdl-textfield__input" type="number" id="hrs_df_n" placeholder="0.0">
+                          <input class="mdl-textfield__input" type="number" id="hrs_df_n" placeholder="0.0" maxlength="5" oninput="autotab(this, document.getElementById('calcular'))">
                           <label class="mdl-textfield__label" for="hrs_df_n">Noturnas</label>
                       </div>                  
                     </td>
@@ -124,7 +124,7 @@
                   <tr>
                     <td>
                       
-                        <button style="display: block; margin: auto;" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"  onclick="calcular();" >CALCULAR</button>           
+                        <button style="display: block; margin: auto;" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"  id="calcular" onclick="calcular();" >CALCULAR</button>           
 
                     </td>
                   </tr>
@@ -174,9 +174,14 @@
             </div>  
 
 
-            <input type="number" name="price"
-           pattern="[0-9]+([\.,][0-9]+)?" step="0.01"
-            title="This should be a number with up to 2 decimal places."> 
+
+
+          <!--<input type="text" id="teste1" name="teste1" maxlength="4" oninput="autotab(this, document.getElementById('teste2'))"></input>-->
+
+          <input type="number" id="teste1" name="teste1" maxlength="4" oninput="autotab(this, document.getElementById('teste2'))"></input>
+
+          <input type="text" id="teste2" name="teste2" maxlength="4"></input>
+
 
           </div>           
 
@@ -296,7 +301,15 @@
         }
     }
 
+    function autotab(current,to){
+      if (current.getAttribute && current.value.length==current.getAttribute("maxlength")){
+        to.focus()
+      }
+    }
+
 
 </script>
+
+
 
 </html>
